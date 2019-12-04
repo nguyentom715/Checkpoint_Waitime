@@ -1,0 +1,16 @@
+checkpoint_waittime.checkpoint_waittime_api_v1_handler:
+  path: '/api/checkpoint_waittime/v1/{first}/{second}'
+  defaults:
+    _controller: '\Drupal\checkpoint_waittime\Controller\checkpoint_waittimeController::checkpoint_waittime_api_v1_handler'
+    _title: 'API v1 Root'
+    first: NULL
+    second: NULL
+  requirements:
+    _access: 'TRUE'
+csv_importer.form:
+  path: '/admin/config/development/csv-importer'
+  defaults:
+    _form: '\Drupal\checkpoint_waittime\Form\CheckpointwaittimeForm'
+    _title: 'Import CSV'
+  requirements:
+    _permission: 'administer site configuration'

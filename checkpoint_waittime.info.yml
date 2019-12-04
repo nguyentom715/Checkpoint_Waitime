@@ -1,0 +1,7 @@
+type: module
+name: Checkpoint Wait Time
+description: 'Import wait times and make available via API'
+package: TSA
+core: '8.x'
+dependencies:
+  - csv_importer:csv_importer

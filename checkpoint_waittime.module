@@ -1,0 +1,2 @@
+<?php
+    //include_once drupal_get_path('module', 'checkpoint_waittime') . '/checkpoint_waittime.mybatch.inc';

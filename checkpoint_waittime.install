@@ -1,0 +1,72 @@
+<?php
+
+function checkpoint_waittime_schema() {
+  $schema['checkpoint_waittime_data'] = array(
+    'description' => 'Checkpoint throughput data',
+    'fields' => array(
+      'id' => array(
+        'description' => 'Id of the row',
+        'type' => 'serial',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ),
+      'airport_code' => array(
+        'description' => 'International Airport Code',
+        'type' => 'varchar',
+        'length' => '5',
+        'not null' => TRUE,
+        'default' => '',
+      ),
+      'airport_name' => array(
+        'description' => 'Common name for the airport',
+        'type' => 'varchar',
+        'length' => '150',
+        'not null' => FALSE,
+      ),
+      'day' => array(
+        'description' => 'common week day name in English',
+        'type' => 'varchar',
+        'length' => '10',
+        'not null' => FALSE,
+      ),
+      'hour' => array(
+        'description' => 'hour of the day',
+        'type' => 'int',
+        'not null' => FALSE,
+      ),
+      'max_precheck_wait' => array(
+        'description' => 'max wait time for precheck',
+        'type' => 'int',
+        'not null' => FALSE,
+      ),
+      'max_standard_wait' => array(
+        'description' => 'max wait time for standard',
+        'type' => 'int',
+        'not null' => FALSE,
+      ),
+      'updated' => array(
+        'description' => 'the last time the row was updated',
+        'type' => 'int',
+        'not null' => FALSE,
+      ),
+    ),
+    'primary key' => array('id'),
+    'unique keys' => array(
+      'code_day_hour' => array('airport_code', 'day', 'hour')
+    ),
+    'indexes' => array(
+      'airport_code' => array('airport_code'),
+      'day' => array('day'),
+    ),
+  );
+
+  return $schema;
+}
+
+/**
+ * create the checkpoint_waittime_data table
+ */
+function checkpoint_waittime_update_8002() {
+  $schema = checkpoint_waittime_schema();
+  db_create_table('checkpoint_waittime_data', $schema['checkpoint_waittime_data']);
+}
